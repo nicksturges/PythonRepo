@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<style>
+    body{
+        background: lightsteelblue;
+    }
+    .col{
+        margin-top: 30px;
+        margin-right: 10px;
+        background-color: lightskyblue;
+        /* text-align: center; */
+        /* margin: 5px; */
+        height: 500px;
+        box-shadow: 10px 10px 8px 10px #888888;
+        
+        
+    }
+    input{
+        /* background-color: grey; */
+        display: block;
+        color: blue;
+        margin-bottom: 5px;
+        width: 75%;
+    }
+    .access{
+        width: 25%;
+        margin-left: 119px;
+        box-shadow: 5px red;
+
+    }
+    h1{
+        text-decoration: underline;
+    }
+</style>
+</head>
+<body>
+        <div class="container">
+                <div class="row">
+                  <div class="col">
+                      <h1>Register</h1>
+                     
+                     <form action="/process" method="POST">
+                        {% with messages = get_flashed_messages(category_filter=["register"]) %}
+                        {% if messages %}
+                          {% for message in messages %}
+                            <p  style="color: green;">{{message}}</p>
+                          {% endfor %}
+                        {% endif %}
+                      {% endwith %}
+                      
+                        {% with messages = get_flashed_messages(category_filter=["name"]) %}
+                        {% if messages %}
+                          {% for message in messages %}
+                            <p  style="color:red;">{{message}}</p>
+                          {% endfor %}
+                        {% endif %}
+                      {% endwith %}
+                         First Name:
+                         <input type="text" name="firstName" placeholder="tell us your name" >
+                    
+                         {% with messages = get_flashed_messages(category_filter=["lastName"]) %}
+                      {% if messages %}
+                        {% for message in messages %}
+                          <p  style="color:red;">{{message}}</p>
+                        {% endfor %}
+                      {% endif %}
+                    {% endwith %}
+                         Last Name:
+                         <input type="text" name="lastName" placeholder="Last name" >
+                       
+                         {% with messages = get_flashed_messages(category_filter=["userName"]) %}
+                      {% if messages %}
+                        {% for message in messages %}
+                          <p  style="color:red;">{{message}}</p>
+                        {% endfor %}
+                      {% endif %}
+                    {% endwith %}
+                         Username:
+                         <input type="text" name="userName" placeholder="enter a username">
+                         
+                         {% with messages = get_flashed_messages(category_filter=["email"]) %}
+                      {% if messages %}
+                        {% for message in messages %}
+                          <p  style="color:red;">{{message}}</p>
+                        {% endfor %}
+                      {% endif %}
+                    {% endwith %}
+                    {% with messages = get_flashed_messages(category_filter=["email_success"]) %}
+                    {% if messages %}
+                      {% for message in messages %}
+                        <p  style="color: green;">{{message}}</p>
+                        
+                      {% endfor %}
+                    {% endif %}
+                  {% endwith %}
+                 
+                         Email:
+                         <input type="text" name="email" placeholder="Enter a valid email" >
+                        
+                         {% with messages = get_flashed_messages(category_filter=["password"]) %}
+                         {% if messages %}
+                           {% for message in messages %}
+                             <p  style="color:red;">{{message}}</p>
+
+                           {% endfor %}
+                         {% endif %}
+                       {% endwith %}
+                       
+                         Password:
+                         <input type="password" name="password" placeholder="password is case sensitive" >
+                       
+                         Confirm Password:
+                         <input type="password" name="confirm" placeholder="re-enter password" >
+                         <input class="access" type="submit" name="submit" value="Register!" >
+                            
+                     </form>
+                  </div>
+                  <!-- LOGIN!!!!!!!!!!! -->
+                  <div class="col">
+                      <h1>Login</h1>
+                      <form action="/login" method="POST">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                        {% for category, message in messages %}
+                        {% if category == 'fail' %}
+                                   <span style="color: red;">{{ message }}</span>
+                               {% endif %}
+                                {% endfor %} 
+                                {% endif %}
+                                {% endwith %}
+                                <br>
+                            Username:
+                            <input type="text" name="userName" placeholder="Enter Username">
+
+                            
+                            Password:
+                            <input type="password" name="login_password" placeholder="password is case sensitive" >
+                            <input class="access" type="submit" name="submit" value="Login!" >
+                            
+                      </form>
+                  </div>
+                  <div class="w-100"></div>
+                  
+                </div>
+              </div>
+</body>
+</html>

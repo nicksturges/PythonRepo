@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>book page</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+ 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <style>
+
+        a{
+        text-decoration: underline;
+        /* margin: 8px; */
+        line-height: 20px;
+        /* float: right; */
+        margin-right: 10px;
+       
+    }
+    h4{
+        text-decoration: underline;
+    }
+    
+   
+    .wrapper{
+        overflow-y:scroll;
+        padding: 10px;
+        line-height: 15px;
+        height: 300px;
+        outline: 1px solid red;
+        width: 50%;
+        /* display: inline; */
+    }
+    .right{
+        display: inline-block;
+        vertical-align: top !important;
+        float: right;
+        margin-right: 100px;
+    }
+    p{
+        display: block;
+    }
+   .info{
+       display: block;
+   }
+    </style>
+  </head>
+  <body>
+      <div class="container">
+            <a href="/">Logout</a>
+            <a href="/dashboard">Home</a>
+        
+            <div class="jumbotron">
+         
+            
+              <h4>{{ novels[0]['title'] }}</h4>
+              <h5>{{ novels[0]['author'] }}</h5>
+      
+            </div>
+            <h4>Reviews:</h4>
+            <hr>
+            <div class="wrapper">
+                {% for j in novels %}
+                
+                <p>Rating: ****</p>
+                <p><a href="/user_page/{{ j['users.id'] }}">{{ j['firstName'] }}</a>said: {{ j["review"]  }}</p> 
+                <small>Posted on: {{ j["created_at"] }}</small>
+                <hr>
+                {% endfor %} 
+            </div>
+                
+         
+       
+            
+            <div class="right">
+              <h4>Add a Review:</h4> 
+              <form action="/add_review" method="POST">
+                  <textarea class="info" name="new_review" id="" cols="30" rows="10"></textarea>
+                  Rating:
+                  <select class="info" name="rating" >
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                </select>
+                <input type="hidden" name="id" value="{{ novels[0]['id'] }}">
+                <input type="submit" name="submit" value="Submit Review">
+              </form> 
+              <hr>
+
+            </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+  </body>
+</html>
